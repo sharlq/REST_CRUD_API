@@ -26,10 +26,6 @@ app.get('/', (req, res) => {
     res.send('hello from Homepage.')
 }) 
 
-try{app.use('/users', usersRoutes);}
-catch(err){
-    app.use('/users',(res,req)=>{
-        res.send(err)
-    })
-}
+app.use('/users', usersRoutes);
+
 app.listen(PORT, () => console.log("server up and running"))
