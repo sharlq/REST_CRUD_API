@@ -5,7 +5,7 @@ const users =[
    
 ]
 
-const getUsers=(req,res)=>{ //it was /users befor we changed it to only /
+const getUsers=(req,res)=>{ 
     res.send(users);
 }
 
@@ -15,7 +15,7 @@ const addUser=(req,res)=>{
     const user = req.body;
     
     users.push({...user,id:uuidv4()})
-    res.send(`the user name is ${user.firstName}`); // SEND something to the sender the poster of the information
+    res.send(`the user name is ${user.firstName}`); 
 }
 
 
@@ -36,7 +36,7 @@ const deleteUser = (req,res)=>{
 const updateUser  = (req,res)=>{
     const {id} = req.params;
     const {firstName,lastName,age}=req.body
-    const user = users.find((user)=>user.id===id) // it pass by refferance
+    const user = users.find((user)=>user.id===id) 
     if(firstName){
         user.firstName=firstName;
     }
