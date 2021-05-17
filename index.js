@@ -16,7 +16,7 @@ const con = mongoose.connection
 con.on('open', () => {
     console.log('connected...')
 })
-
+console.log(process.env.URI)
 const app = express();
 const PORT = process.env.PORT || 5000;
 app.use(bodyParser.json()); 
@@ -26,5 +26,10 @@ app.get('/', (req, res) => {
     res.send('hello from Homepage.')
 }) 
 
-app.use('/users', usersRoutes);
+try{app.use('/users', usersRoutes);}
+catch(err){
+    app.use('/users',(res,req)=>{
+        res.send(err)
+    })
+}
 app.listen(PORT, () => console.log("server up and running"))
