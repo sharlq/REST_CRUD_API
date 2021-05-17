@@ -1,3 +1,4 @@
 # REST CRUD API
+
   
-  this API can be used to creat,read,update and delete data
+  this API is use to interact with mongodb to create , read , update and delete data
