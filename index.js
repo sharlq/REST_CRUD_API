@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 app.get('/', (req, res) => {
 
     console.log('test')
-    res.send('hellow from Homepage.')
+    res.send('hello from Homepage.')
 }) 
 
 app.use('/users', usersRoutes);
