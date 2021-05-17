@@ -1,7 +1,23 @@
 import express from 'express';
 import bodyParser from 'body-parser'
 import usersRoutes from './routes/users.js'
+import mongodb from 'mongodb';
+import mongoose from 'mongoose'
+import dotenv from "dotenv";
 
+dotenv.config()
+const MongoClient =mongodb.MongoClient;
+const uri = process.env.URI;
+
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
+client.on('open',()=>{
+    console.log('connected')
+})
 
 const app = express();
 const PORT = 5000;
