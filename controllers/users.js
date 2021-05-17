@@ -1,21 +1,35 @@
 import express from 'express';
-
+import userModel from '../models/user.js';
 import { v4 as uuidv4 } from 'uuid';
 const users =[
    
 ]
 
-const getUsers=(req,res)=>{ //it was /users befor we changed it to only /
+const getUsers=async(req,res)=>{ //it was /users befor we changed it to only /
+    //res.send(users);
+    const users = await userModel.find({});
+
+  try {
     res.send(users);
+  } catch (error) {
+    res.status(500).send(error);
+  }
 }
 
-const addUser=(req,res)=>{
+const addUser=async(req,res)=>{
     
-    
-    const user = req.body;
+    const user = new userModel(req.body);
+
+    try {
+      await user.save();
+      res.send(user);
+    } catch (error) {
+      res.status(500).send(error);
+    }
+   /* const user = req.body;
     
     users.push({...user,id:uuidv4()})
-    res.send(`the user name is ${user.firstName}`); // SEND something to the sender the poster of the information
+    res.send(`the user name is ${user.firstName}`);*/ // SEND something to the sender the poster of the information
 }
 
 
