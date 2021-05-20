@@ -3,7 +3,7 @@
   
   this API is use to interact with mongodb to create , read , update and delete data
   
-  if you want to test the site the user schemas is 
+  if you want to test the site the user schema is 
 
   ```ruby
    firstName: {
